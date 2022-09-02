@@ -27,10 +27,15 @@ console.log(promiseResult);
 promiseResult
   .then(arr => {
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i]);
+      let newList = document.createElement("li");
+      newList.textContent = arr[i];
+      console.log(newList);
+      list.appendChild(newList);
     }
   })
-  .catch(obj => console.log(obj.success, obj.message));
+  .catch(obj => {
+    p.textContent = obj.message;
+  });
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
