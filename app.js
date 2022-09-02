@@ -2,10 +2,16 @@
  *
  * @returns A promise that is designed to resolve with a list of hobbits, or potentially fail with an failure object. The failure object includes a boolean success property and a string message property.
  */
+let p = document.getElementById("error");
+let list = document.getElementById("list");
+
+console.log(p, list);
+
 function getList() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let potentialFail = Math.round(Math.random() * 100) < 10;
+      console.log(potentialFail);
       if (potentialFail) {
         reject({ success: false, message: "Failed to get list of hobbits." });
       } else {
@@ -15,6 +21,16 @@ function getList() {
   });
 }
 
+let promiseResult = getList();
+console.log(promiseResult);
+
+promiseResult
+  .then(arr => {
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+    }
+  })
+  .catch(obj => console.log(obj.success, obj.message));
 // TODO: Handle the resolved or rejected states of the promise
 
 // TODO: If the promise resolves with the list of hobbits
